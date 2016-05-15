@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="Debug">
+			<Target title="Debug (client)">
 				<Option output="bin/Debug/tradXX" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
@@ -15,7 +15,7 @@
 					<Add option="-g" />
 				</Compiler>
 			</Target>
-			<Target title="Release">
+			<Target title="Release (client)">
 				<Option output="bin/Release/tradXX" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
@@ -27,10 +27,33 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
+			<Target title="Debug (server)">
+				<Option output="tradXX" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+			</Target>
+			<Target title="Release (server)">
+				<Option output="tradXX" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="`pkg-config --cflags gtkmm-3.0`" />
 		</Compiler>
+		<Linker>
+			<Add option="`pkg-config --libs gtkmm-3.0`" />
+			<Add library="gtkmm-3.0" />
+		</Linker>
+		<Unit filename="client/main.cpp">
+			<Option target="Debug (client)" />
+			<Option target="Release (client)" />
+		</Unit>
+		<Unit filename="server/main.cpp">
+			<Option target="Release (server)" />
+			<Option target="Debug (server)" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />
